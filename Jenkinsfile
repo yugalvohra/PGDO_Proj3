@@ -3,7 +3,7 @@ node {
     def application = "devopsexample"
     
     //Its mandatory to change the Docker Hub Account ID after this Repo is forked by an other person
-    def dockerhubaccountid = "vikidvg"
+    def dockerhubaccountid = "yugal007"
 	
     // reference to maven
     // ** NOTE: This 'maven-3.5.2' Maven tool must be configured in the Jenkins Global Configuration.   
@@ -16,7 +16,7 @@ node {
     
     stage('Clone Repo') { 
       // Get some code from a GitHub repository
-      git url:'https://github.com/vdharmaraj/PGDO_Proj3.git',branch:'main' //update your forked repo
+      git url:'https://github.com/yugal007/PGDO_Proj3.git',branch:'main' //update your forked repo
       // Get the Maven tool.
       // ** NOTE: This 'maven-3.5.2' Maven tool must be configured
       // **       in the global configuration.           
@@ -35,7 +35,7 @@ node {
 	//push image to remote repository , in your jenkins you have to create the global credentials similar to the 'dockerHub' (credential ID)
     stage('Push Image to Remote Repo'){
 	 echo "Docker Image Tag Name ---> ${dockerImageTag}"
-	     docker.withRegistry('', 'dockerHub') {
+	     docker.withRegistry('', 'dockerhub') {
              dockerImage.push("${env.BUILD_NUMBER}")
              dockerImage.push("latest")
             }
